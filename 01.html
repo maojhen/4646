@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>背景音樂播放頁</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: "Segoe UI", sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .play-btn {
+      padding: 16px 32px;
+      font-size: 1.2rem;
+      color: white;
+      background: #ff6b6b;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .play-btn:hover {
+      background: #ff4757;
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.6);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 107, 107, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 點擊播放世揚老歌 🎵</h1>
+  <button class="play-btn" onclick="startMusic()">播放音樂</button>
+
+  <audio id="bgMusic" loop>
+    <source src="02.mp3" type="audio/mpeg" />
+    您的瀏覽器不支援音訊播放。
+  </audio>
+
+  <script>
+    function startMusic() {
+      const audio = document.getElementById('bgMusic');
+      audio.play().then(() => {
+        document.querySelector('.play-btn').textContent = "🎶 播放中...";
+      }).catch(err => {
+        alert("瀏覽器限制自動播放，請再次點擊播放");
+      });
+    }
+  </script>
+</body>
+</html>
